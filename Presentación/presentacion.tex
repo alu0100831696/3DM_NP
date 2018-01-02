@@ -1,0 +1,161 @@
+\documentclass[10pt, mathserif, profesionalfont]{beamer}
+
+\include{config}
+\include{acro}
+
+\usetheme{Boadilla}
+\title{\Huge Demostraci\'{o}n de $\mathcal{NP}$-completitud \LaTeX \\3 DIMENSIONAL MATCHING}
+\author{Sofía Pizarro Arbelo \and alu0100831696}
+\institute[ULL]{Universidad de La Laguna}
+\date{Curso 2017/2018}
+\subject{Complejidad Computacional}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Introducción}
+\begin{frame}{NP-completos}
+    
+\begin{block}
+{\small 
+\noindent ¿Son tratables los NP-completos?
+
+\noindent Los NP-completos parecen intratables, aunque nadie ha sabido demostrar que los NP-completos son
+intratables. Son todos equivalentes, es decir:
+}
+\end{block}
+
+\begin{block}
+{\small
+\noindent Si se encuentra un algoritmo eficiente para un NP-completo entonces tenemos un algoritmo
+eficiente para cualquiera de ellos.
+
+\noindent Si probamos que un NP-completo no tiene algoritmos eficientes entonces ninguno los tiene.
+}
+\end{block}
+
+
+\end{frame}
+
+\section{Transformaciones polinomiales}
+\begin{frame}{Transformaciones polinomiales I}
+    
+\begin{block}  
+ Una transformación o reducción polinomial de un problema de decisión $\Pi$1 a uno $\Pi$2 es una función que se computa en tiempo polinomial y transforma una instancia I1 de $\Pi$1 en una instancia I2 de $\Pi$2 tal que I1 tiene respuesta "sí" para $\Pi$1 si y solo si I2 tiene respuesta "sí" para $\Pi$2.  
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Transformaciones polinomiales II}
+    
+\begin{block}  
+El problema de decisión $\Pi$1 se reduce polinomialmente a otro problema de decisión $\Pi$2, $\Pi$1 $\leq$p $\Pi$2, si existe una transformación polinomial de $\Pi$1 a $\Pi$2. 
+
+\end{block}
+\begin{block}
+Si $\Pi$'' $\leq$p $\Pi$' y $\Pi$' $\leq$p $\Pi$ entonces $\Pi$'' $\leq$p $\Pi$, ya que la composición de dos reducciones polinomiales es una reducción polinomial.
+\end{block}  
+
+\end{frame}
+
+\section{Problemas $\mathcal{NP}$ Completos}
+\begin{frame}{Problemas $\mathcal{NP}$ Completos}
+    
+\begin{block}  
+Un problema $\Pi$ es $\mathcal{NP}$-completo si:
+\begin{enumerate}
+
+	\item $\Pi$ $\in$ $\mathcal{NP}$.
+	\item Para todo $\Pi$' $\in$ $\mathcal{NP}$ , $\Pi$' $\leq$p $\Pi$.
+	\end{enumerate}
+		\includegraphics[width =0.5\textwidth]{1.jpg}
+
+\end{block}
+
+
+\end{frame}
+
+\section{Descripción del problema 3DM}
+\begin{frame}{Descripción del problema 3DM I}
+    \begin{block}  
+	Instancia
+		\begin{itemize}
+			\item Un conjunto M c W x X x Y	
+			\begin{itemize}
+				\item W $\cap$ Y $\cap$ X = $\phi$ (disjuntos)
+				\item $\mid$W$\mid$ = $\mid$X$\mid$ = $\mid$Y$\mid$ = q
+			\end{itemize}
+		\end{itemize}
+\end{block}
+
+
+\end{frame}
+\begin{frame}{Descripción del problema 3DM II}		
+	 \begin{block}
+	 Pregunta: L1 $\leq$n L
+		\begin{itemize}
+			\item $\mid$M'$\mid$ = q
+			\item Todos los elementos W u X u Y están en alguna terceta de M' sin repetir ninguno.
+		\end{itemize}
+		
+			\includegraphics[width =0.5\textwidth]{2.jpg}
+\end{block}
+\end{frame}
+
+\section{Demostrar que un 3DM es NP completo}
+\begin{frame}{3SAT $\alpha$ 3DM I}
+    \includegraphics[width =0.5\textwidth]{3.jpg}
+
+\end{frame}
+
+\begin{frame}{3SAT $\alpha$ 3DM II}
+	Notación
+    \includegraphics[width =0.5\textwidth]{4.jpg}
+
+\end{frame}
+\begin{frame}{3SAT $\alpha$ 3DM III}
+Tercetas de asignación
+    \includegraphics[width =0.5\textwidth]{5.jpg}
+
+\end{frame}
+\begin{frame}{3SAT $\alpha$ 3DM IV}
+M' será un matching con m elementos de Ti
+    \includegraphics[width =0.5\textwidth]{6.jpg}
+
+\end{frame}
+
+\begin{frame}{3SAT $\alpha$ 3DM V}
+Tercetas de satisfacción
+    \includegraphics[width =0.5\textwidth]{7.jpg}
+
+\end{frame}
+\begin{frame}{3SAT $\alpha$ 3DM V}
+Tercetas de relleno
+    \includegraphics[width =0.5\textwidth]{8.jpg}
+
+\end{frame}
+
+\begin{frame}{3SAT $\alpha$ 3DM VI}
+    \includegraphics[width =0.5\textwidth]{9.jpg}
+    
+\end{frame}
+\begin{frame}{3SAT $\alpha$ 3DM VI}
+   \includegraphics[width =0.5\textwidth]{10.jpg}
+ \includegraphics[width =0.5\textwidth]{11.jpg}
+\\\textit{\textbf{3-Dimensional Matching es $\mathcal{NP}$-COMPLETO}}
+
+\end{frame}
+
+
+\end{document}

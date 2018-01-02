@@ -1,0 +1,284 @@
+\documentclass[a4paper,10pt]{article} 
+
+\include{config}
+\include{acro}
+
+\title{\Huge Demostración de $\mathcal{NP}$-completitud \LaTeX \\3 DIMENSIONAL MATCHING} 
+\author{Sofía Pizarro Arbelo \and alu0100831696}
+\date{Curso 2017/2018}
+
+
+\begin{document}
+
+\maketitle 
+\tableofcontents
+
+\section{Introducción}
+
+	$\mathcal{NP}$ es el conjunto de lenguajes resolubles en tiempo polinómico no determinista, mientras que $\mathcal{NP}$-completo son los más difíciles de la clase, se caracterizan por ser todos iguales. La teoría $\mathcal{NP}$-completo se basa en el concepto de \textbf{transformación polinomial}. 
+
+\textit{Un ejemplo} de $\mathcal{NP}$-completo: supongamos que queremos hacer algoritmo eficiente para un problema muy complicado a resolver. ¿Es algo imposible? Probablemente no, veamos por qué. Después de romperte la cabeza durante horas solo se te ocurre un algoritmo de \textit{fuerza bruta}, con su respectivo tiempo exponencial y entonces piensas que se trata de un problema intratable, que no existe un algoritmo para ello y es ahí cuando puedes demostrar de alguna manera que es $\mathcal{NP}$-completo. 
+Los $\mathcal{NP}$-completos parecen intratables, aunque nadie ha sabido demostrar que los $\mathcal{NP}$-completos son intratables.
+Son todos equivalentes, es decir: 
+	\begin{itemize}
+		\item Si se encuentra un algoritmo eficiente para un $\mathcal{NP}$-completo entonces tenemos un algoritmo eficiente para cualquiera de ellos.
+		\item Si probamos que un $\mathcal{NP}$-completo no tiene algoritmos eficientes entonces ninguno los tiene.
+	\end{itemize}
+
+La necesidad de buscar una solución al problema no desaparecerá, pero podemos:
+
+	\begin{itemize}
+		\item Dejar de buscar un algoritmo en tiempo polinómico para el problema. 
+		\item Buscar un algoritmo eficiente para un problema diferente relacionado con el original.
+		\item O bien intentar usar el algoritmo exponencial a ver qué tal funciona con varios valores a probar.
+	\end{itemize}
+
+\section{Clase P y NP}
+
+\subsection{Definición}
+
+	\begin{itemize}
+		\item 	Un problema de decisión está en la clase P si las instancias “sí” son reconocidas por una MTD polinomial.
+		\item 	Un problema de decisión está en la clase $\mathcal{NP}$ si las instancias “sí” son reconocidas por una MTND polinomial.
+		\item 	Alternativamente, La clase $\mathcal{NP}$ se puede definir como el conjunto de problemas de decisión que admiten un certificado polinomial.
+	\end{itemize}
+
+\subsection{Relaciones entre las clases:}
+	
+	\begin{enumerate}
+		\item $\mathcal{P}$ $\subseteq$ $\mathcal{NP}$
+		\item Problema abierto: ¿Es $\mathcal{P}$ = $\mathcal{NP}$?
+	\end{enumerate}
+
+
+\section{Transformaciones polinomiales}
+
+	\begin{itemize}
+		\item Una transformación o reducción polinomial de un problema de decisión $\Pi$1 a uno $\Pi$2 es una función que se computa en tiempo polinomial y transforma una instancia I1 de $\Pi$1 en una instancia I2 de $\Pi$2 tal que I1 tiene respuesta "sí" para $\Pi$1 si y solo si I2 tiene respuesta "sí" para $\Pi$2.  
+		\item  El problema de decisión $\Pi$1 se reduce polinomialmente a otro problema de decisión $\Pi$2, $\Pi$1 $\leq$p $\Pi$2, si existe una transformación polinomial de $\Pi$1 a $\Pi$2. 
+		\item Si $\Pi$'' $\leq$p $\Pi$' y $\Pi$' $\leq$p $\Pi$ entonces $\Pi$'' $\leq$p $\Pi$, ya que la composición de dos reducciones polinomiales es una reducción polinomial.
+	
+	\end{itemize}
+
+\section{Problemas $\mathcal{NP}$ Completos}
+	Un problema $\Pi$ es $\mathcal{NP}$-completo si:
+	\begin{enumerate}
+
+	\item $\Pi$ $\in$ $\mathcal{NP}$.
+	\item Para todo $\Pi$' $\in$ $\mathcal{NP}$ , $\Pi$' $\leq$p $\Pi$.
+	\end{enumerate}
+		\includegraphics[width =0.5\textwidth]{1.jpg}
+
+\section{Descripción del problema 3DM}
+
+\begin{enumerate}
+
+	\item Instancia
+		\begin{itemize}
+			\item Un conjunto M c W x X x Y	
+			\begin{itemize}
+				\item W $\cap$ Y $\cap$ X = $\phi$ (disjuntos)
+				\item $\mid$W$\mid$ = $\mid$X$\mid$ = $\mid$Y$\mid$ = q
+			\end{itemize}
+		\end{itemize}
+			
+	\item ¿L1 $\leq$n L?
+		\begin{itemize}
+			\item $\mid$M'$\mid$ = q
+			\item Todos los elementos W u X u Y están en alguna terceta de M' sin repetir ninguno.
+		\end{itemize}
+		\begin{figure}[h!]
+			\includegraphics[width =0.5\textwidth]{2.jpg}
+		\end{figure}
+	
+\end{enumerate}
+
+\section{Demostrar que un 3DM es NP completo}
+	A partir del Teorema de Cook, la técnica estándar para probar que un problema $\Pi$ es $\mathcal{NP}$-completo aprovecha la transitividad de $\leq$p, y consiste en lo siguiente: 
+	\begin{enumerate}
+		\item \textbf{Mostrar que $\Pi$ está en $\mathcal{NP}$.}
+		\item \textbf{Elegir un problema $\Pi$' apropiado que se sepa que es $\mathcal{NP}$-completo.}
+		\item \textbf{Construir una reducción polinomial f de $\Pi$' en $\Pi$.}
+	\end{enumerate}
+
+	La segunda condición en la definición de problema $\mathcal{NP}$-completo sale usando la transitividad: sea $\Pi$0'' un problema cualquiera de $\mathcal{NP}$. Como $\Pi$' es $\mathcal{NP}$-completo, $\Pi$'' $\leq$p $\Pi$'. Como probamos que $\Pi$' $\leq$p $\Pi$, resulta $\Pi$'' $\leq$p $\Pi$.
+
+En este caso específico:
+\begin{enumerate}
+		\item \textbf{Demostrar que 3DM es $\mathcal{NP}$.}
+		\item \textbf{Seleccionar un problema $\Pi$' que sea $\mathcal{NP}$-completo}
+		\item \textbf{Construir una transformación (f) $\Pi$' $\alpha$ 3DM }
+		\item \textbf{Comprobar que la transformación f se hace en tiempo polinomial.}
+	\end{enumerate}
+	
+	\subsection{Demostrar que un 3DM es NP}
+		Dada una instancia (M, X, Y, W) del 3DM se construye un algoritmo no determinista que genere una solución de $\mid$W$\mid$ tercetas de M y compruebe en tiempo polinomial que no hay dos tercetas con elementos comunes.
+		
+		\subsubsection{ALGORITMO $\Pi$'} 
+		$\star$3 SATISFABILITY (3SAT)
+		 Instancia:
+			-	Conjunto de m cláusulas C = {c1, ..., cm}
+				$\circ$	$\mid$ci$\mid$ = 3 , 1 $\leq$ i $\leq$ m
+			-	Sobre un conjunto finito de n variables booleanas
+				$\circ$	U = {u1, ..., un}
+		¿Existe alguna asignación válida de U que satisfaga todas las cláusulas de C.?
+
+		\subsubsection{3SAT $\alpha$ 3DM} 
+		
+		\includegraphics[width =0.5\textwidth]{3.jpg}
+		
+		
+		\begin{itemize}
+			\item Técnica para la demostración de $\mathcal{NP}$-completitud: Diseño de Componentes
+			\item Notación: 
+			\begin{figure}[h!]
+				\includegraphics[width =0.5\textwidth]{4.jpg}
+			\end{figure}
+			\item La demostración se basa en la construcción de tres tipos de componentes:
+				\begin{itemize}
+					\item Tercetas de asignación
+					Para cada variable ui $\in$ U se introduce una componente Ti. 
+						\begin{itemize}
+							\item Ti depende del número de cláusulas m de C 
+							\item Estructura de Ti: 
+							\begin{enumerate}
+								\item Elementos internos: 
+									\begin{itemize}
+										\item ai [j] $\in$ X, 1 $\leq$ j $\leq$ m ; bi [j] $\in$ Y, 1 $\leq$ j $\leq$ m 
+										 \\No van a pertenecer a otras tercetas de otro Ti 
+									 \end{itemize}
+								\item Elementos externos: 
+								\begin{itemize}
+										\item ui [j] , $\neg$ [j] $\in$ W, 1 $\leq$ j $\leq$ m 									
+										\\Pueden pertenecer a otras tercetas 
+								\end{itemize}
+							\end{enumerate}
+							\item El literal ui en 3SAT puede ser usado en varias cláusulas, en el 3DM debemos tener muchas m copias de ui.
+							
+								\includegraphics[width =0.5\textwidth]{5.jpg}
+							
+							\item Si ningún elemento interno de la componente Ti aparece en otra Th (i $\\neq$ h):  
+							\begin{itemize}
+										\item M' será un matching con m elementos de Ti 
+										\begin{figure}[h!]
+											\includegraphics[width =0.5\textwidth]{6.jpg}
+										\end{figure}
+							\end{itemize}
+							\item Si ui = true se elegirá como M' las tercetas grises, dejando libre el resto para poder utilizarlas en la construcción del resto de componentes.
+						\end{itemize}
+					\item Tercetas de satisfacción
+						\begin{itemize}
+							\item Para cada cláusula cj $\in$ C introducimos una componente Cj.
+							\item -	Estructura:
+								\begin{enumerate}
+									\item Elementos Internos: 
+										\begin{itemize}
+											\item sx [j] $\in$ X, sy [j] $\in$ Y : 1 $\leq$ j $\leq$ m 																\end{itemize}
+									\item Elementos externos: 
+										\begin{itemize}
+											\item ui [j] , $\neg$ui [j] $\in$ W : 1 $\leq$ i $\leq$ n;1 $\leq$ j $\leq$ m						\end{itemize}
+								\end{enumerate}
+							\item Cj = {(ui [j], sx [j], sy [j]): si el literal ui $\in$ cj} U {($\neg$ui [j], sx [j], sy [j]): si el literal $\neg$ui $\in$ cj}
+							
+								\includegraphics[width =0.5\textwidth]{7.jpg}
+							
+							\item -	Cualquier matching M' c M debe contener una terceta de Cj para emparejar los elementos internos sx [j] y sy [j]: 
+							\begin{enumerate}
+								\item Sx [j] y Sy [j] pueden ser emparejados, sí sólo sí, al menos uno de los literales (ui) de cj no ha sido emparejado en alguna componente “Truth seeting” Ti (Ti $\cap$ M') 
+								\item o	Si tenemos una 3SAT-Instancia satisfacible, entonces las variables Sx[j] y Sy[j] pueden ser emparejadas 
+								\item o	Si tenemos una 3SAT-Instancia no satisfacible, entonces las variables Sx[j] y Sy[j] no pueden ser emparejadas.
+							\end{enumerate}
+						\end{itemize}
+					\item Tercetas de relleno
+						\begin{itemize}
+							\item Hay muchos ui [j] que no se emparejan con componentes de relleno ni con componentes de satisfacción
+							\item Introducimos m (n -1) variables nuevas: 
+								\begin{enumerate}
+									\item gx [k] $\in$ X , gy [k] $\in$ Y: 1 $\leq$ k $\leq$ m(n-1) 
+								\end{enumerate}
+							\item ¿ Por qué m (n-1) variables? 
+								\begin{enumerate}
+									\item Hay mxn variables u sin emparejar después de calcular las tercetas de asignación. 
+									\item Si todas las m cláusulas se satisfacen se han emparejado m variables. 
+									\item Finalmente quedan sin emparejar (mxn) – m = m(n-1)
+								\end{enumerate}
+							\item Cada pareja (gx [k], gy [k]) se enlazará con una única variable ui [j] o $\neg$ui [j] que no estén en las tercetas que se han formado con las componentes anteriores:
+							
+								\includegraphics[width =0.5\textwidth]{8.jpg}
+							
+						\end{itemize}
+				\end{itemize}
+				
+				En resumen:
+				\begin{figure}[h!]
+					\includegraphics[width =0.5\textwidth]{9.jpg}
+				\end{figure}
+				\begin{itemize}
+					\item Se ha observado que las tercetas resultantes M son el producto cartesiano de W x X x Y
+					\item Esta forma de definir las tercetas:
+						\begin{enumerate}
+							\item Desde su definición en términos de una instancia (U,C) del 3SAT 
+							\item M se construye en tiempo polinomial
+						\end{enumerate}
+				\end{itemize}
+				
+			\textbf{Para completar la demostración de NP Completitud falta por demostrar:}
+			\begin{figure}[h!]
+				\includegraphics[width =0.5\textwidth]{10.jpg}
+			\end{figure}
+			\begin{figure}[h!]
+				\includegraphics[width =0.5\textwidth]{11.jpg}
+			\end{figure}
+			\begin{itemize}
+					\item Sea t: U $\to$ { T, F } el dominio de valores para U que satisface las cláusulas C. 
+					\item Se construye un matching M' c M del modo siguiente: 
+						\begin{enumerate}
+							\item Para cada cláusula cj $\in$ C: 
+							\begin{itemize}
+								\item Zj $\in$ {ui, $\neg$ui: 1 $\leq$ i $\leq$ n} $\cap$ cj 
+									\\	Literales con asignación verdadera. 
+									\\	Debe de existir al menos uno, ya que t satisface a cj. 
+							\end{itemize}
+							\item Se construye la M': 
+							\begin{figure}[h!]
+								\includegraphics[width =0.5\textwidth]{12.jpg}
+							\end{figure}
+								\begin{itemize}
+									\item G': conjunto de m(n-1) tercetas de G que incluyen:  
+										\\	Todos los gx [k] $\in$ X , gy [k] $\in$ Y 
+										\\  Y los ui[j] , $\neg$ui[j] $\in$ W que no se han emparejado. 
+									\item Es fácil de verificar que siempre se puede construir un G' para que el resultado del conjunto M' sea un matching.
+								\end{itemize}
+						\end{enumerate}
+						\begin{figure}[h!]
+							\includegraphics[width =0.5\textwidth]{13.jpg}
+						\end{figure}
+					\item Se ha visto que para cada ui $\in$ U, M' incluía exactamente m tercetas de Ti: Tt i o Tf i. 
+					\item Sea t: U $\to$ { T, F } donde t(ui) = T $\leftrightarrow$ M' $\cap$ Ti = Tt i
+						\begin{enumerate}
+							\item t será una asignación correcta que satisface C. 
+						\end{enumerate}
+					\item Consideremos una cláusula arbitraria cj $\in$ C 
+						\begin{enumerate}
+							\item Para cubrir los elementos internos de la componente Cj (de la componente de testing) 
+								\begin{itemize}
+									\item Se necesita al menos una terceta de Cj contenida en M'. 
+									\item Esta terceta contiene un literal de cj $\in$ C, que no estará en M' $\cap$ Ti
+								\end{itemize}
+							\item Como t(ui) = T $\leftrightarrow$ M' $\cap$ Ti = Tt i
+								\begin{itemize}
+									\item Entonces t satisface la cláusula cj  $\cap$ Ti
+								\end{itemize} 
+							\item Si todas las cláusulas cj $\in$ C se satisfacen 
+								\begin{itemize}
+									\item (U,C) es satisfacible
+								\end{itemize} 
+						\end{enumerate}
+				\end{itemize}
+			
+		\end{itemize}
+		  
+						\textit{\textbf{3-Dimensional Matching es $\mathcal{NP}$-COMPLETO}}
+\clearpage
+\printglossary[type=\acronymtype]
+\end{document}
